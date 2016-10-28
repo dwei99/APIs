@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('#houseInfo').hide();
+      $('img').click(function() {
+          var id = $(this).attr("id");
+          console.log($(this).attr("id"));
+
+           var url = "http://www.anapioficeandfire.com/api/houses/"+id;
+          //var url = "http://www.anapioficeandfire.com/api/houses/?page=1&pageSize=50";
+
+          $.get(url, function(res) {
+              $('#houseInfo').show();
+              $('#houseInfo').html('<h3>Name:'+res.name+'</h3><br><h4>Words:'+res.words+'</h4><br><h4>Region:'+res.region+'</h4><br><h4>CoatOfArms:'+res.coatOfArms+'</h4><br><h4>Titles:'+res.titles+'</h4>')
+              console.log(res);
+          }, 'json');
+          return false;
+        });
+    });
+    </script>
+    <meta charset="utf-8">
+    <title>Game of Thrones - The Great Houses</title>
+  </head>
+  <body>
+    <div id ="wrapper">
+      <img id="362" src ="gameofthrones/stark.jpg" height ="250" width ="250">
+      <img id="378" src ="gameofthrones/targaryen.jpg" height ="250" width ="250">
+      <img id="229" src ="gameofthrones/lannister.jpg" height ="250" width ="250">
+      <img id="15" src ="gameofthrones/baratheon.png" height ="250" width ="250">
+    </div>
+    <div id = "houseInfo"></div>
+  </body>
+</html>
